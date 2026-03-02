@@ -237,7 +237,7 @@ I106Status Set_Attributes_AnalogF1(R_DataSource *r_datasource,
 
     /* if (r_datasource->szAnalogMeasTransfOrd != NULL)    // R-x\AMTO-n-m most significant bit "M", least significant bit "L". default: M */
     /* { */
-    /*     /1* Measurement Transfer Order. Which bit is being transferred first is specified as – Most Significant Bit (M), */ 
+    /*     /1* Measurement Transfer Order. Which bit is being transferred first is specified as ï¿½ Most Significant Bit (M), */ 
     /*     Least Significant Bit (L), or Default (D). */
     /*     D-1\MN3-1-1:M; */
     /*     *1/ */
@@ -468,12 +468,12 @@ I106Status I106_Decode_NextAnalogF1(AnalogF1_Message *msg){
 
 
 I106Status PrintCSDW_AnalogF1(AnalogF1_CSDW *csdw){
-    printf("Subchannel number:\t\t %" PRIu32 "\n", csdw->Subchannel);
-    printf("Mode:\t\t\t\t %" PRIu32 "\n", csdw->Mode);
-    printf("Total number of subchannels:\t %" PRIu32 "\n", csdw->Subchannels);
-    printf("Sampling factor:\t\t %" PRIu32 "\n", csdw->Factor);
-    printf("Same bit:\t\t\t %" PRIu32 "\n", csdw->Same);
-    printf("Reserved:\t\t\t %" PRIu32 "\n", csdw->Reserved);
+    // printf("Subchannel number:\t\t %" PRIu32 "\n", csdw->Subchannel);
+    // printf("Mode:\t\t\t\t %" PRIu32 "\n", csdw->Mode);
+    // printf("Total number of subchannels:\t %" PRIu32 "\n", csdw->Subchannels);
+    // printf("Sampling factor:\t\t %" PRIu32 "\n", csdw->Factor);
+    // printf("Same bit:\t\t\t %" PRIu32 "\n", csdw->Same);
+    // printf("Reserved:\t\t\t %" PRIu32 "\n", csdw->Reserved);
 
     return I106_OK;
 }
