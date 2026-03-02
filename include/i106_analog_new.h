@@ -68,6 +68,23 @@ I106Status I106_Decode_Raw_AnalogF1(I106C10Header *header, uint8_t *buffer, I106
         bytes_read += sizeof(AnalogF1_CSDW);
     }
 
+    // Populate channels_sampled_per_factor_value and highest_sample_factor
+    decoded_packet_handle->highest_sample_factor = 0;
+
+    // normalize factors (0 -> 1), find highest factor, and populate channels_sampled_per_factor_value
+    for (auto &[subchannel, csdw] : decoded_packet_handle->subchannel_csdws) {
+        if (csdw.Factor == 0) {
+            csdw.Factor = 1;
+        }
+        if (csdw.Factor > decoded_packet_handle->highest_sample_factor) {
+            decoded_packet_handle->highest_sample_factor = csdw.Factor;
+        }
+        // Ensure that all lower factor values have this channel as well.
+        for (int factor = csdw.Factor; factor > 0; factor /= 2) {
+            decoded_packet_handle->channels_sampled_per_factor_value[factor].push_back(csdw.Subchannel);
+        }
+    }
+
     // While payload bytes remain
     uint32_t tick = 0;
     int bits_read = 0;
